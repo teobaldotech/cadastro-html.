@@ -1,0 +1,384 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulário HTML5 para cadastro de usuários">
+    <title>Cadastro de Usuários</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f1f4f9;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px #00000015;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5b45d6;
+            margin-top: 0;
+        }
+
+        .descricao {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .campo.completo {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d0d5dd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #fff;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #8b80f9;
+            border-color: #5b45d6;
+        }
+
+        .termos {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .termos input {
+            width: auto;
+            margin-top: 3px;
+        }
+
+        .termos label {
+            font-weight: normal;
+            line-height: 1.5;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cadastrar {
+            background: #5b45d6;
+            color: white;
+        }
+
+        .cadastrar:hover {
+            background: #4934bb;
+        }
+
+        .limpar {
+            background: #e9edf5;
+            color: #344054;
+        }
+
+        #mensagem {
+            margin-top: 18px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                padding: 20px;
+                margin: 10px auto;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .campo.completo {
+                grid-column: auto;
+            }
+
+            .botoes {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Cadastro de Usuários</h1>
+        <p class="descricao">
+            Preencha os campos para validar seu cadastro.
+        </p>
+
+        <form id="formCadastro">
+            <div class="form-grid">
+                <div class="campo completo">
+                    <label for="nome">Nome completo *</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        autocomplete="name"
+                        minlength="3"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="email">E-mail *</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autocomplete="email"
+                        maxlength="254"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="telefone">Telefone</label>
+                    <input
+                        type="tel"
+                        id="telefone"
+                        name="telefone"
+                        autocomplete="tel"
+                        maxlength="20"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="nascimento">Data de nascimento</label>
+                    <input
+                        type="date"
+                        id="nascimento"
+                        name="nascimento"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="genero">Gênero</label>
+                    <select id="genero" name="genero">
+                        <option value="">Selecione</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="outro">Outro</option>
+                        <option value="nao-informar">
+                            Prefiro não informar
+                        </option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="cep">CEP</label>
+                    <input
+                        type="text"
+                        id="cep"
+                        name="cep"
+                        autocomplete="postal-code"
+                        maxlength="9"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="cidade">Cidade</label>
+                    <input
+                        type="text"
+                        id="cidade"
+                        name="cidade"
+                        autocomplete="address-level2"
+                        maxlength="80"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="estado">Estado (UF)</label>
+                    <input
+                        type="text"
+                        id="estado"
+                        name="estado"
+                        maxlength="2"
+                        pattern="[A-Za-z]{2}"
+                        title="Informe a sigla de dois caracteres"
+                    >
+                </div>
+
+                <div class="campo completo">
+                    <label for="endereco">Endereço</label>
+                    <input
+                        type="text"
+                        id="endereco"
+                        name="endereco"
+                        autocomplete="street-address"
+                        maxlength="150"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha *</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="128"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="confirmarSenha">Confirmar senha *</label>
+                    <input
+                        type="password"
+                        id="confirmarSenha"
+                        name="confirmarSenha"
+                        autocomplete="new-password"
+                        minlength="8"
+                        maxlength="128"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="termos">
+                <input type="checkbox" id="termos" required>
+                <label for="termos">
+                    Confirmo que os dados informados estão corretos. *
+                </label>
+            </div>
+
+            <div class="botoes">
+                <button type="submit" class="cadastrar">
+                    Cadastrar usuário
+                </button>
+
+                <button type="reset" class="limpar">
+                    Limpar formulário
+                </button>
+            </div>
+
+            <p id="mensagem" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <script>
+        "use strict";
+
+        const formulario = document.getElementById("formCadastro");
+        const senha = document.getElementById("senha");
+        const confirmarSenha =
+            document.getElementById("confirmarSenha");
+        const mensagem = document.getElementById("mensagem");
+        const nascimento = document.getElementById("nascimento");
+
+        nascimento.max = new Date().toLocaleDateString("en-CA");
+
+        function validarSenhas() {
+            confirmarSenha.setCustomValidity(
+                confirmarSenha.value &&
+                senha.value !== confirmarSenha.value
+                    ? "As senhas não correspondem."
+                    : ""
+            );
+        }
+
+        senha.addEventListener("input", validarSenhas);
+        confirmarSenha.addEventListener("input", validarSenhas);
+
+        formulario.addEventListener("submit", function (evento) {
+            evento.preventDefault();
+            validarSenhas();
+
+            if (!formulario.checkValidity()) {
+                formulario.reportValidity();
+                return;
+            }
+
+            if (nascimento.value > nascimento.max) {
+                mensagem.textContent =
+                    "A data de nascimento não pode ser futura.";
+                mensagem.style.color = "#c62828";
+                nascimento.focus();
+                return;
+            }
+
+            mensagem.textContent =
+                "Formulário validado com sucesso! Nenhum dado foi salvo ou enviado.";
+            mensagem.style.color = "#16794b";
+        });
+
+        formulario.addEventListener("reset", function () {
+            mensagem.textContent = "";
+            confirmarSenha.setCustomValidity("");
+        });
+
+        document.getElementById("cep")
+            .addEventListener("input", function () {
+                const numeros = this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 8);
+
+                this.value = numeros.length > 5
+                    ? numeros.slice(0, 5) + "-" + numeros.slice(5)
+                    : numeros;
+            });
+
+        document.getElementById("estado")
+            .addEventListener("input", function () {
+                this.value = this.value
+                    .replace(/[^a-z]/gi, "")
+                    .slice(0, 2)
+                    .toUpperCase();
+            });
+    </script>
+</body>
+</html>
+```
